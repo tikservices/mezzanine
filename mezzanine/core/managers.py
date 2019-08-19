@@ -408,14 +408,10 @@ class DisplayableManager(CurrentSiteManager, PublishedManager,
         setattr(home, "get_absolute_url", home_slug)
         items = {home.get_absolute_url(): home}
         for model in apps.get_models():
-            try:
-                if issubclass(model, self.model):
-                    if hasattr(model.objects, 'published'):
-                        for item in (model.objects.published(for_user=for_user)
-                                             .filter(**kwargs)
-                                             .exclude(slug__startswith="http://")
-                                             .exclude(slug__startswith="https://")):
-                            items[item.get_absolute_url()] = item
-            except AttributeError:
-                pass
+            if issubclass(model, self.model):
+                for item in (model.objects.published(for_user=for_user)
+                                  .filter(**kwargs)
+                                  .exclude(slug__startswith="http://")
+                                  .exclude(slug__startswith="https://")):
+                    items[item.get_absolute_url()] = item
         return items

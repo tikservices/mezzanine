@@ -11,8 +11,7 @@
 </style>
 <script>window.__page_ordering_url = '{% url "admin_page_ordering" %}';</script>
 {% if not settings.USE_MODELTRANSLATION %}
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="{% static "mezzanine/js/"|add:settings.JQUERY_UI_FILENAME %}"></script>
 {% endif %}
 <script src="{% static "mezzanine/js/admin/jquery.mjs.nestedSortable.js" %}"></script>
 <script src="{% static "mezzanine/js/admin/page_tree.js" %}"></script>
@@ -20,6 +19,7 @@
 
 {% block content %}
 <div id="content-main">
+
     {% if has_add_permission %}
         {% include "admin/includes/content_typed_change_list.html" %}
     {% endif %}

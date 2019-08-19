@@ -107,11 +107,8 @@ class BaseGenericRelation(GenericRelation):
                 return
             if hasattr(instance, "get_content_model"):
                 instance = instance.get_content_model()
-            try:
-                related_manager = getattr(instance, self.related_field_name)
-                self.related_items_changed(instance, related_manager)
-            except AttributeError:
-                pass
+            related_manager = getattr(instance, self.related_field_name)
+            self.related_items_changed(instance, related_manager)
 
     def related_items_changed(self, instance, related_manager):
         """
