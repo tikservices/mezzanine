@@ -107,10 +107,12 @@ class AdminThumbMixin(object):
         if not thumb:
             return ""
         from mezzanine.conf import settings
-        from mezzanine.core.templatetags.mezzanine_tags import thumbnail
         x, y = settings.ADMIN_THUMB_SIZE.split('x')
-        thumb_url = thumbnail(thumb, x, y)
-        return format_html("<img src='{}{}'>", settings.MEDIA_URL, thumb_url)
+
+        filename = settings.LIBPIXEL_DOMAIN + "/" + str(thumb.url)
+        filename = filename + "?mode=crop&quality=80&width=" + str(x) + "&height=" + str(y)
+
+        return format_html("<img src='{}'>", filename)
     admin_thumb.short_description = ""
 
 
