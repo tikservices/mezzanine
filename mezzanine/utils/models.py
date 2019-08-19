@@ -109,7 +109,7 @@ class AdminThumbMixin(object):
         from mezzanine.conf import settings
         x, y = settings.ADMIN_THUMB_SIZE.split('x')
 
-        filename = settings.LIBPIXEL_DOMAIN + "/" + str(thumb.url)
+        filename = settings.LIBPIXEL_DOMAIN + "/" + str(thumb)
         filename = filename + "?mode=crop&quality=80&width=" + str(x) + "&height=" + str(y)
 
         return format_html("<img src='{}'>", filename)
