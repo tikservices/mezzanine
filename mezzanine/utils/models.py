@@ -105,8 +105,12 @@ class AdminThumbMixin(object):
         from mezzanine.conf import settings
         from mezzanine.core.templatetags.mezzanine_tags import thumbnail
         x, y = settings.ADMIN_THUMB_SIZE.split('x')
-        thumb_url = thumbnail(thumb, x, y)
-        return format_html("<img src='{}{}'>", settings.MEDIA_URL, thumb_url)
+        try:
+            thumb_url = str(thumb) + '?width=' + str(x) + '&height=' + str(y) + '&format=webp'
+            return format_html("<img src='{}/{}'>", settings.LIBPIXEL_DOMAIN, thumb_url)
+        except KeyError:
+            thumb_url = thumbnail(thumb, x, y)
+            return format_html("<img src='{}{}'>", settings.MEDIA_URL, thumb_url)
     admin_thumb.short_description = ""
 
 
