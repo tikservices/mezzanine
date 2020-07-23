@@ -1,5 +1,5 @@
 {% extends "admin/base.html" %}
-{% load mezzanine_tags i18n staticfiles %}
+{% load mezzanine_tags i18n staticfiles static %}
 
 {% block title %}{{ title }} | Mezzanine{% endblock %}
 
@@ -18,7 +18,7 @@
     window.__tinymce_css = '{% static "mezzanine/css/tinymce.css" %}';
     window.__admin_url = '{{ admin_index_url }}';
     window.__static_proxy = '{{ static_proxy_url }}';
-    window.__admin_media_prefix__ = '{% static "admin" %}/';
+    window.__admin_media_prefix__ = '{% get_static_prefix %}/admin';
     window.__grappelli_installed = {{ settings.GRAPPELLI_INSTALLED|lower }};
     window.__admin_menu_collapsed = {{ settings.ADMIN_MENU_COLLAPSED|lower }};
     window.__language_code = '{{ LANGUAGE_CODE }}';
@@ -57,25 +57,6 @@ jQuery(function($) {
     {% if hide_delete_link or singleton %}.submit-row .deletelink {display:none !important;}{% endif %}
     {% if hide_slug_field %}.slug {display:none !important;}{% endif %}
     {% if singleton %}.change-view-save-another {display:none !important;}{% endif %}
-
-     /* override for base product style checkboxes i.e period, style etc, hopefully this won't mess stuff up elsewhere */
-    ul#id_style li label, ul#id_period li label{ width: 100%; }
-    .form-row input[type="checkbox"] { margin: -2px 0 0;}
-    .form-row ul label { width: 100%; }
-    select#id_related_service_areas, select#id_services { width: 95%;}
-    span.page-model { float: left; font-size: 0.6rem; padding: 2px 8px 0px; text-transform: uppercase;}
-    #tree { min-width: 600px; width: 80% !important; }
-
-    .filebrowser td.fb_icon img {max-width: 150px; width: 100%; }
-    td.field-admin_thumb {max-width: 150px;} /* #STEV001 */
-    td.field-admin_thumb img {width: 100%;}
-    .selector {width: 100%;}
-    .selector-available, .selector-chosen { max-width: 500px; width: 48%;}
-    .selector-available select[multiple=multiple], .selector-chosen select[multiple=multiple]{ width: 100%; }
-    #changelist table { width: 100%; }
-    #changelist table img { width: 100%; }
-    textarea[readonly] { background: #ddd; color: #eee; }
-    table img { max-width: 30px; }
 </style>
 {% endblock %}
 
