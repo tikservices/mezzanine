@@ -51,7 +51,7 @@ try:
         packages=find_packages(),
         install_requires=[
             "django-contrib-comments",
-            "django >= 1.11, < 2.1",
+            "django >= 2.2, < 3.0",
             "filebrowser_safe >= 0.5.0",
             "grappelli_safe >= 0.5.0",
             "tzlocal >= 1.0",
@@ -82,6 +82,8 @@ try:
             "Programming Language :: Python :: 3.4",
             "Programming Language :: Python :: 3.5",
             "Programming Language :: Python :: 3.6",
+            "Programming Language :: Python :: 3.7",
+            "Programming Language :: Python :: 3.8",
             "Topic :: Internet :: WWW/HTTP",
             "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
             "Topic :: Internet :: WWW/HTTP :: WSGI",
