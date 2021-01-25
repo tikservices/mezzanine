@@ -1,6 +1,7 @@
 from modeltranslation.translator import translator, TranslationOptions
 from mezzanine.core.translation import TranslatedRichText
 from mezzanine.forms.models import Form, Field
+from mezzanine.conf import settings
 
 
 class TranslatedForm(TranslatedRichText):
@@ -10,5 +11,7 @@ class TranslatedForm(TranslatedRichText):
 class TranslatedField(TranslationOptions):
     fields = ('label', 'choices', 'default', 'placeholder_text', 'help_text',)
 
-translator.register(Form, TranslatedForm)
-translator.register(Field, TranslatedField)
+
+if settings.USE_MODELTRANSLATION:
+    translator.register(Form, TranslatedForm)
+    translator.register(Field, TranslatedField)
